@@ -21,7 +21,7 @@ do
         ]}'
 
 	# Send request
-	curl -H "Content-Type: application/json" -X POST -d "$json" 192.168.10.242:8080/predict
+	curl -H "Content-Type: application/json" -X POST -d "$json" 192.168.X.X:8080/predict
 
 	# Sleep 1000ms - 0ms
         sleep $(echo "(($RANDOM%1000)+1)*0.001" | bc)
@@ -43,7 +43,7 @@ do
                		echo $(jq --argjson str "$data" '.instances[.instances | length] |= . + $str' text.json) > text.json
         	done
 	# Send request
-        curl -H "Content-Type: application/json" -X POST -d @./text.json 192.168.10.242:8080/predict
+        curl -H "Content-Type: application/json" -X POST -d @./text.json 192.168.X.X:8080/predict
 
 	# Sleep 2 seconds
         sleep 2
@@ -54,7 +54,7 @@ done
 
 RANDOM=42
 
-curl -H "Content-Type: application/json" -X POST -d @./bigdata.json 192.168.10.242:8080/predict
+curl -H "Content-Type: application/json" -X POST -d @./bigdata.json 192.168.X.X:8080/predict
 
 # All scenarios are done
 echo Done!
